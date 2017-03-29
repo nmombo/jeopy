@@ -9,6 +9,7 @@
 
 from lxml import html
 import requests
+import re
 
 # Get the page with show #7490
 game_url = 'http://www.j-archive.com/showgame.php?game_id=5566'
@@ -30,15 +31,27 @@ for category in range(0,6):
 		if tree.xpath(path):
 			rows.append(tree.xpath(path)[0])
 		else:
-			rows.append("")
+			rows.append('')
 	clues.append(rows)
 
 # Parse answers from tree
-path = '//*[@id="clue_J_2_1"]/em'
-print tree.xpath(path)
+answers = []
+for category in range(0,6):
+	rows = []
+	for row in range(0,5):
+		path = '//div[@onclick="togglestick(\'clue_J_'+ str(category+1) + '_' + str(row+1) + '_stuck\')"]/@onmouseover'
+		if tree.xpath(path):
+			toggle_js = tree.xpath(path)[0]
+			answer = re.findall(r'correct_response">(.*)</em>', str(toggle_js))
+			rows.append(answer[0]) if answer else rows.append('')
+		else:
+			rows.append('')
+	answers.append(rows)
+
 
 # Test scraping
 for category in range(0,6):
 	print categories_rnd1[category]
 	for row in range(0,5):
 		print '    clue ' + str(row+1) + ': ' + str(clues[category][row])
+		print '    answ ' + str(row+1) + ': ' + str(answers[category][row])
