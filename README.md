@@ -10,7 +10,7 @@ This project requires the following libaries:
 
 These can be installed with:
 
-'''
+```
 pip install lxml
 pip install requests
-'''
+```
