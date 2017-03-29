@@ -4,7 +4,5 @@
 
 This project requires the ```lxml``` library and the ```requests``` module. These can be installed from the command line with:
 
-```
-pip install lxml
-pip install requests
-```
+	pip install lxml
+	pip install requests
