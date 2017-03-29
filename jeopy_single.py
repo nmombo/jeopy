@@ -33,8 +33,12 @@ for category in range(0,6):
 			rows.append("")
 	clues.append(rows)
 
+# Parse answers from tree
+path = '//*[@id="clue_J_2_1"]/em'
+print tree.xpath(path)
+
 # Test scraping
 for category in range(0,6):
 	print categories_rnd1[category]
 	for row in range(0,5):
-		print '    row ' + str(row+1) + ': ' + str(clues[category][row])
+		print '    clue ' + str(row+1) + ': ' + str(clues[category][row])
