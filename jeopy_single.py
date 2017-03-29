@@ -16,6 +16,10 @@ page = requests.get(game_url)
 # Generate the html page tree
 tree = html.fromstring(page.content)
 
+# Parse round one categories from tree
+path = '//*[@class="category_name"]/text()'
+categories_rnd1 = tree.xpath(path)[0:6]
+
 # Parse round one clues from tree
 # ID's of clues go from "clue_J_1_1" to "clue_J_6_5"
 clues = []
@@ -29,8 +33,8 @@ for category in range(0,6):
 			rows.append("")
 	clues.append(rows)
 
-# Test clues
+# Test scraping
 for category in range(0,6):
-	print 'CATEGORY ' + str(category+1)
+	print categories_rnd1[category]
 	for row in range(0,5):
 		print '    row ' + str(row+1) + ': ' + str(clues[category][row])
