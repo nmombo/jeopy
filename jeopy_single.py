@@ -5,7 +5,7 @@
 
 # Author: Noah Momblanco
 #         http://github.com/nmombo/jeopy
-# Date: 3/28/2017
+# Date: 3/29/2017
 
 from lxml import html
 import requests
@@ -21,33 +21,28 @@ tree = html.fromstring(page.content)
 path = '//*[@class="category_name"]/text()'
 categories_rnd1 = tree.xpath(path)[0:6]
 
-# Parse round one clues from tree
+# Parse round one clues and answers from tree
 # ID's of clues go from "clue_J_1_1" to "clue_J_6_5"
-clues = []
+clues, answers = [], []
 for category in range(0,6):
-	rows = []
+	rows_cl, rows_ans = [], []
 	for row in range(0,5):
+		# Clues
 		path = '//*[@id="clue_J_' + str(category+1) + '_' + str(row+1) + '"]/text()'
 		if tree.xpath(path):
-			rows.append(tree.xpath(path)[0])
+			rows_cl.append(tree.xpath(path)[0])
 		else:
-			rows.append('')
-	clues.append(rows)
-
-# Parse answers from tree
-answers = []
-for category in range(0,6):
-	rows = []
-	for row in range(0,5):
+			rows_cl.append('')
+		# Answers
 		path = '//div[@onclick="togglestick(\'clue_J_'+ str(category+1) + '_' + str(row+1) + '_stuck\')"]/@onmouseover'
 		if tree.xpath(path):
 			toggle_js = tree.xpath(path)[0]
 			answer = re.findall(r'correct_response">(.*)</em>', str(toggle_js))
-			rows.append(answer[0]) if answer else rows.append('')
+			rows_ans.append(answer[0]) if answer else rows_ans.append('')
 		else:
-			rows.append('')
-	answers.append(rows)
-
+			rows_ans.append('')
+	clues.append(rows_cl)
+	answers.append(rows_ans)
 
 # Test scraping
 for category in range(0,6):
