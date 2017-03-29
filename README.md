@@ -6,11 +6,11 @@ My only goal for this project is to learn.
 This project requires the following libaries:
 
 * lxml
-
 * requests
 
 These can be installed with:
 
-> pip install lxml
-
-> pip install requests
+'''
+pip install lxml
+pip install requests
+'''
