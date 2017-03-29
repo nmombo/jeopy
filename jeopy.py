@@ -24,3 +24,6 @@ def response(sms):
 
 	'''
 	print sms
+
+	reply = 'temp'
+	return reply
