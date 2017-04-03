@@ -6,10 +6,3 @@ This project requires the ```lxml``` library and the ```requests``` module. Thes
 
 	pip install lxml
 	pip install requests
-
-## thanks
-
-I want to thank all the people who have helped me accomplish my learning:
-* Ashish Nitin Patil, who answered my [stack overflow question](http://stackoverflow.com/a/43086352/7783990)
-* Kenneth Reitz, who wrote a [HTML scraping tutorial](http://docs.python-guide.org/en/latest/scenarios/scrape/)
-* Unknown, who wrote a [tutorial on extending Python with C++](https://docs.python.org/2/extending/extending.html)
