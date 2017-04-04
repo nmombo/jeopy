@@ -23,7 +23,22 @@ def response(sms):
 			app user
 
 	'''
+
+	# print the incoming message to the server terminal
 	print sms
 
-	reply = 'temp'
+	# if incoming message is the initializing message "START"
+	if removeEndingWhiteSpace(sms) = 'START':
+		reply = 'temp: start message received'
+	# if incoming message is the closing message "STOP"
+	elif removeEndingWhiteSpace(sms) = 'STOP':
+		reply = 'temp: close message received'
+	else:
+		reply = 'temp: other message received'
+
 	return reply
+
+def removeEndingWhiteSpace(str):
+	while(str[str.length() - 1] == ' ' or str[str.length() - 1] == '\n'):
+		str = str[:str.length() - 1]
+	return str
