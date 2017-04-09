@@ -18,10 +18,13 @@ myTwilioSID = 'ACd7173182fbfbee0265e86f88929fb005'
 myTwilioToken = 'secret'
 client = TwilioRestClient(account=myTwilioSID, token=myTwilioToken) 
 app = Flask(__name__)
+myGame = Game()
 
 # define function to respond to an sms message
 @app.route('/sms', methods=['POST'])
 def inbound_sms():
 	response = twiml.Response()
-	response.message(jeopy.response(request.form(['Body'])))
+	response.message(jResponse(str(request.form['Body']), myGame))
 	return str(response)
+
+app.run(host='0.0.0.0', debug=True)
