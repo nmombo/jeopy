@@ -38,17 +38,21 @@ def jResponse(sms, myGame):
 	elif sms == 'A':
 		reply = getAnswer(myGame)
 	else:
-		reply = getQuestion(int(sms), myGame)
+		reply = getCategory(int(sms), myGame) + ':\n' + getQuestion(int(sms), myGame)
 
+	print reply
 	return reply
+
+def getCategory(i, myGame):
+	return myGame.getCategories()[i%6]
 
 def getQuestion(i, myGame):
 	myGame.setI(i)
-	row = i / 6
-	col = i % 6
+	row = i % 6
+	col = i / 6
 	return myGame.getClues()[row][col]
 
 def getAnswer(myGame):
-	row = myGame.getI() / 6
-	col = myGame.getI() % 6
+	row = myGame.getI() % 6
+	col = myGame.getI() / 6
 	return myGame.getAnswers()[row][col]

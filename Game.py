@@ -4,7 +4,7 @@ import re
 
 class Game:
 
-	def __init__(self, gameid='5566'):
+	def __init__(self, gameid='5577'):
 		self.gameid = gameid
 		self.game_url = 'http://www.j-archive.com/showgame.php?game_id=' + self.gameid
 		self.page = requests.get(self.game_url)
